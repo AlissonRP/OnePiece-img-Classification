@@ -15,3 +15,4 @@ You just need to upload an image of a member of the Straw Hats
 ```python
 conda install --file requirements.txt
 ```
+
