@@ -65,6 +65,11 @@ def load_labels():
 
 
 def predict(model, categories, imagem):
+    """
+    model: model fitted
+    categories: labels
+    imagem: input img
+    """
     transformations = T.Compose([
         T.Resize((102, 102)),
         T.ToTensor(),
@@ -74,9 +79,9 @@ def predict(model, categories, imagem):
     model.eval()
     output = model(batch)
     logits = torch.nn.functional.softmax(output[0], dim=0)
-    top5_prob, top5_catid = torch.topk(logits, 3)
-    for i in range(top5_prob.size(0)):
-        st.write(categories[top5_catid[i]], round(top5_prob[i].item(), 2))
+    top3_prob, top3_catid = torch.topk(logits, 3)
+    for i in range(top3_prob.size(0)):
+        st.write(categories[top3_catid[i]], round(top3_prob[i].item(), 2))
 
 
 def main():
@@ -94,8 +99,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-# %%
-
-OnePiece-img-Classification

@@ -126,9 +126,6 @@ def make_confusion_matrix(model, loader, n_classes):
 
 
 def evaluate_accuracy(model, dataloader, classes, verbose=True):
-    # prepare to count predictions for each class
-    correct_pred = {classname: 0 for classname in classes}
-    total_pred = {classname: 0 for classname in classes}
 
     confusion_matrix = make_confusion_matrix(model, dataloader, len(classes))
     if verbose:
@@ -150,7 +147,7 @@ def evaluate_accuracy(model, dataloader, classes, verbose=True):
 
 
 def test(model, dataloader, classes):
-    # prepare to count predictions for each class
+
     correct_pred = {classname: 0 for classname in classes}
     total_pred = {classname: 0 for classname in classes}
 
@@ -166,7 +163,6 @@ def test(model, dataloader, classes):
                     correct_pred[classes[label]] += 1
                 total_pred[classes[label]] += 1
 
-    # print accuracy for each class
     total_correct = 0.0
     total_prediction = 0.0
     for classname, correct_count in correct_pred.items():
